@@ -1,38 +1,72 @@
-# create-svelte
+# Lexical Svelte
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+> **⚠️ Lexical is currently in early development and APIs and packages are likely to change quite often.**
 
-## Creating a project
+This package provides a set of components and utilities for Lexical that allow for text editing in Svelte applications.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Getting started
 
-```bash
-# create a new project in the current directory
-npm init svelte
+Install `lexical` and `lexical-svelte`:
 
-# create a new project in my-app
-npm init svelte my-app
+```
+npm i lexical lexical-svelte
 ```
 
-## Developing
+Below is an example of a basic plain text editor using `lexical` and `lexical-svelte`
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```svelte
+<script>
+  import { $getRoot as getRoot, $getSelection as getSelection } from "lexical";
 
-```bash
-npm run dev
+  import {
+      LexicalComposer,
+      ContentEditable,
+      PlainTextPlugin,
+      OnChangePlugin,
+      AutoFocusPlugin
+  } from 'lexical-svelte';
+  import { editorConfig } from "./editorConfig";
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+  //Two way binding
+  let value;
+
+  const config = {
+      theme: {
+          // Theme styling goes here
+      }
+  }
+
+  // Catch any errors that occur during Lexical updates and log them
+  // or throw them as needed. If you don't throw them, Lexical will
+  // try to recover gracefully without losing user data.
+  const handleError = (error) => {
+      throw error
+  }
+
+  // When the editor changes, you can get notified via the
+  // OnChangePlugin!
+  const handleChange = (event: CustomEvent) => {
+    const { editorState } = event.detail;
+    editorState.read(() => {
+      // Read the contents of the EditorState here.
+      const root = getRoot();
+      const selection = getSelection();
+
+      console.log(root, selection);
+    });
+  };
+</script>
+
+<LexicalComposer initialConfig={config} on:error={handleError}>
+  <div class="editor-container">
+    <PlainTextPlugin>
+      <ContentEditable slot="contentEditable" />
+      <div slot="placeholder">
+          Enter some text...
+      </div>
+    </PlainTextPlugin>
+    <OnChangePlugin bind:value on:change={handleChange} />
+    <AutoFocusPlugin />
+  </div>
+</LexicalComposer>
 ```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
