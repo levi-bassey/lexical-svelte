@@ -23,6 +23,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@lexical/dragon": "^0.2.9",
     "@lexical/plain-text": "^0.2.9",
     "lexical": "^0.2.9"
   }
