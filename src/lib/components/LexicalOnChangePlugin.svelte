@@ -6,6 +6,8 @@
   export let ignoreInitialChange = true;
   export let ignoreSelectionChange = false;
 
+  export let value: EditorState | null = null;
+
   const dispatch = createEventDispatcher<{
     change: { editorState: EditorState; editor: LexicalEditor };
   }>();
@@ -27,6 +29,7 @@
           return;
         }
 
+        value = editorState;
         dispatch("change", { editorState, editor });
       }
     );
