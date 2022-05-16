@@ -3,7 +3,7 @@
   import { createEditor } from "lexical";
   import type { Class } from "utility-types";
   import type { LexicalNode, EditorThemeClasses } from "lexical";
-  import { EDITOR_KEY } from "$lib/editorKey";
+  import { EDITOR_KEY } from "$lib/utilities/editorKey";
   import { registerPlainText } from "@lexical/plain-text";
 
   const dispatch = createEventDispatcher<{ error: Error }>();
