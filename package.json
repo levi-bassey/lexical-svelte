@@ -1,5 +1,5 @@
 {
-  "name": "production",
+  "name": "lexical-svelte",
   "version": "0.0.1",
   "scripts": {
     "dev": "svelte-kit dev",
