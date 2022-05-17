@@ -2,11 +2,11 @@
   import { $getRoot as getRoot, $getSelection as getSelection } from "lexical";
 
   import Placeholder from "./Placeholder.svelte";
-  import LexicalComposer from "$lib/components/LexicalComposer.svelte";
-  import LexicalPlainTextPlugin from "$lib/components/LexicalPlainTextPlugin.svelte";
   import LexicalContentEditable from "$lib/components/LexicalContentEditable.svelte";
+  import LexicalComposer from "$lib/components/LexicalComposer.svelte";
   import LexicalOnChangePlugin from "$lib/components/LexicalOnChangePlugin.svelte";
   import LexicalAutoFocusPlugin from "$lib/components/LexicalAutoFocusPlugin.svelte";
+  import LexicalRichTextPlugin from "$lib/components/LexicalRichTextPlugin.svelte";
   import { editorConfig } from "./editorConfig";
 
   const handleChange = (event: CustomEvent) => {
@@ -23,10 +23,10 @@
 
 <LexicalComposer initialConfig={editorConfig}>
   <div class="editor-container">
-    <LexicalPlainTextPlugin>
-      <LexicalContentEditable class="editor-input" slot="contentEditable" />
+    <LexicalRichTextPlugin>
+      <LexicalContentEditable class="editor-input" slot="contenteditable" />
       <Placeholder slot="placeholder" />
-    </LexicalPlainTextPlugin>
+    </LexicalRichTextPlugin>
     <LexicalOnChangePlugin on:change={handleChange} />
     <LexicalAutoFocusPlugin />
   </div>
