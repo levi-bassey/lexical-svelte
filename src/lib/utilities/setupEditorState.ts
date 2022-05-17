@@ -1,6 +1,6 @@
-import { browser } from "$app/env";
 import type { LexicalEditor } from "lexical";
-import { readable } from "svelte/store";
+import { onMount } from "svelte";
+import { writable, type Readable } from "svelte/store";
 
 export const setupEditorState = (
   editor: LexicalEditor,
@@ -9,31 +9,27 @@ export const setupEditorState = (
 ) => {
   const initial = { editorState: editor.getEditorState(), editor };
 
-  const store = readable(initial, (set) => {
-    let unregister: () => void;
+  const { subscribe, set } = writable(initial);
 
-    if (browser) {
-      editor.registerUpdateListener(
-        ({ editorState, dirtyElements, dirtyLeaves, prevEditorState }) => {
-          if (
-            ignoreSelectionChange &&
-            dirtyElements.size === 0 &&
-            dirtyLeaves.size === 0
-          ) {
-            return;
-          }
-
-          if (ignoreInitialChange && prevEditorState.isEmpty()) {
-            return;
-          }
-
-          set({ editorState, editor });
+  onMount(() => {
+    return editor.registerUpdateListener(
+      ({ editorState, dirtyElements, dirtyLeaves, prevEditorState }) => {
+        if (
+          ignoreSelectionChange &&
+          dirtyElements.size === 0 &&
+          dirtyLeaves.size === 0
+        ) {
+          return;
         }
-      );
-    }
 
-    return () => unregister?.();
+        if (ignoreInitialChange && prevEditorState.isEmpty()) {
+          return;
+        }
+
+        set({ editorState, editor });
+      }
+    );
   });
 
-  return store;
+  return { subscribe };
 };
