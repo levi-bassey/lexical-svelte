@@ -11,7 +11,7 @@
   setupPlainText(editor, initialEditorState);
 </script>
 
-<slot name="contentEditable" />
+<slot name="contenteditable" />
 {#if $showPlaceHolder}
   <slot name="placeholder" />
 {/if}
