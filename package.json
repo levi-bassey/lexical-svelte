@@ -9,6 +9,7 @@
     "rich-text",
     "svelte-components"
   ],
+  "license": "MIT",
   "homepage": "https://github.com/levi-bassey/lexical-svelte#readme",
   "bugs": {
     "url": "https://github.com/levi-bassey/lexical-svelte/issues"
