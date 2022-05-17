@@ -3,7 +3,7 @@
   import { setupHistory } from "$lib/utilities/setupHistory";
   import type { HistoryState } from "@lexical/history";
 
-  export let externalHistoryState: HistoryState;
+  export let externalHistoryState: HistoryState | undefined = undefined;
 
   const editor = getEditor();
   setupHistory(editor, () => externalHistoryState);

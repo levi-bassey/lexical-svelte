@@ -8,7 +8,7 @@ import { afterUpdate, onDestroy } from "svelte";
 
 export const setupHistory = (
   editor: LexicalEditor,
-  externalHistoryState: () => HistoryState,
+  externalHistoryState: () => HistoryState | undefined,
   delay = 1000
 ) => {
   let unregister: () => void;
@@ -25,6 +25,6 @@ export const setupHistory = (
   });
 
   onDestroy(() => {
-    unregister();
+    unregister?.();
   });
 };
