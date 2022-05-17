@@ -4,22 +4,21 @@
   import { getEditor } from "$lib/utilities/getEditor";
   import { setupEditorState } from "$lib/utilities/setupEditorState";
 
-  export let ignoreInitialChange = true;
-  export let ignoreSelectionChange = false;
-
-  export let value: EditorState;
-
+  const editor = getEditor();
   const dispatch = createEventDispatcher<{
     change: { editorState: EditorState; editor: LexicalEditor };
   }>();
 
-  const editor = getEditor();
+  export let ignoreInitialChange = true;
+  export let ignoreSelectionChange = false;
+  export let value = editor.getEditorState();
+
+  $: value = $editorState.editorState;
+  $: dispatch("change", $editorState);
+
   const editorState = setupEditorState(
     editor,
     ignoreInitialChange,
     ignoreSelectionChange
   );
-
-  $: value = $editorState.editorState;
-  $: dispatch("change", $editorState);
 </script>
