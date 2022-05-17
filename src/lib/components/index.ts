@@ -8,3 +8,4 @@ export { default as HistoryPlugin } from "./LexicalHistoryPlugin.svelte";
 export { default as HashTagPlugin } from "./LexicalHashtagPlugin.svelte";
 export { default as LinkPlugin } from "./LexicalLinkPlugin.svelte";
 export { default as ListPlugin } from "./LexicalListPlugin.svelte";
+export { default as TreeViewPlugin } from "./LexicalTreeViewPlugin.svelte";
