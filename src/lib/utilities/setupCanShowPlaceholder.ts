@@ -1,21 +1,21 @@
 import { $canShowPlaceholderCurry } from "@lexical/text";
 import type { LexicalEditor } from "lexical";
-import { onMount } from "svelte";
+import { derived } from "svelte/store";
+import { setupEditorState } from "./setupEditorState";
 
 export const setupCanShowPlaceholder = (editor: LexicalEditor) => {
-  return {
-    subscribe(fn: (shouldShow: boolean) => {}) {
-      fn(true);
-      onMount(() => {
-        return editor.registerUpdateListener(({ editorState }) => {
-          const isComposing = editor.isComposing();
-          const currentCanShowPlaceholder = editorState.read(
-            $canShowPlaceholderCurry(isComposing)
-          );
-          fn(currentCanShowPlaceholder);
-        });
-      });
-      return () => {};
+  const editorState = setupEditorState(editor, false, false);
+  const store = derived(
+    editorState,
+    ({ editorState }) => {
+      const isComposing = editor.isComposing();
+      const currentCanShowPlaceholder = editorState.read(
+        $canShowPlaceholderCurry(isComposing)
+      );
+      return currentCanShowPlaceholder;
     },
-  };
+    false
+  );
+
+  return store;
 };
