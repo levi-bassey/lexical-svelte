@@ -25,7 +25,6 @@ Below is an example of a basic plain text editor using `lexical` and `lexical-sv
       OnChangePlugin,
       AutoFocusPlugin
   } from 'lexical-svelte';
-  import { editorConfig } from "./editorConfig";
 
   //Two way binding
   let value;
