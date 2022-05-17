@@ -1,3 +1,9 @@
 export { getEditor } from "./getEditor";
 export { setupCanShowPlaceholder } from "./setupCanShowPlaceholder";
 export { setupPlainText } from "./setupPlainText";
+export { setupRichText } from "./setupRichText";
+export { setupEditorState } from "./setupEditorState";
+export { setupLink } from "./setupLink";
+export { setupHistory } from "./setupHistory";
+export { setupList } from "./setupList";
+export { setupLexicalTextEntity } from "./setupLexicalTextEntity";

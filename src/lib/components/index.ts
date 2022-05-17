@@ -1,5 +1,10 @@
 export { default as LexicalComposer } from "./LexicalComposer.svelte";
 export { default as ContentEditable } from "./LexicalContentEditable.svelte";
 export { default as PlainTextPlugin } from "./LexicalPlainTextPlugin.svelte";
+export { default as RichTextPlugin } from "./LexicalRichTextPlugin.svelte";
 export { default as OnChangePlugin } from "./LexicalOnChangePlugin.svelte";
 export { default as AutoFocusPlugin } from "./LexicalAutoFocusPlugin.svelte";
+export { default as HistoryPlugin } from "./LexicalHistoryPlugin.svelte";
+export { default as HashTagPlugin } from "./LexicalHashtagPlugin.svelte";
+export { default as LinkPlugin } from "./LexicalLinkPlugin.svelte";
+export { default as ListPlugin } from "./LexicalListPlugin.svelte";
