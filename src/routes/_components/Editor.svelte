@@ -6,8 +6,10 @@
   import LexicalComposer from "$lib/components/LexicalComposer.svelte";
   import LexicalOnChangePlugin from "$lib/components/LexicalOnChangePlugin.svelte";
   import LexicalAutoFocusPlugin from "$lib/components/LexicalAutoFocusPlugin.svelte";
-  import LexicalRichTextPlugin from "$lib/components/LexicalRichTextPlugin.svelte";
+  import LexicalPlainTextPlugin from "$lib/components/LexicalPlainTextPlugin.svelte";
   import { editorConfig } from "./editorConfig";
+  import LexicalHistoryPlugin from "$lib/components/LexicalHistoryPlugin.svelte";
+  import TreeViewPlugin from "./plugins/TreeViewPlugin.svelte";
 
   const handleChange = (event: CustomEvent) => {
     const { editorState } = event.detail;
@@ -23,10 +25,12 @@
 
 <LexicalComposer initialConfig={editorConfig}>
   <div class="editor-container">
-    <LexicalRichTextPlugin>
+    <LexicalPlainTextPlugin>
       <LexicalContentEditable class="editor-input" slot="contenteditable" />
       <Placeholder slot="placeholder" />
-    </LexicalRichTextPlugin>
+    </LexicalPlainTextPlugin>
+    <LexicalHistoryPlugin />
+    <TreeViewPlugin />
     <LexicalOnChangePlugin on:change={handleChange} />
     <LexicalAutoFocusPlugin />
   </div>
@@ -54,6 +58,7 @@
     line-height: 20px;
     font-weight: 400;
     text-align: left;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
   }
 </style>
