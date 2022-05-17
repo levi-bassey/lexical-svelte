@@ -6,10 +6,10 @@
     "lexical",
     "editor",
     "contenteditable",
-    "rich-text",
-    "svelte-components"
+    "rich-text"
   ],
   "license": "MIT",
+  "author": "Levi Bassey <programlevi@gmail.com>",
   "homepage": "https://github.com/levi-bassey/lexical-svelte#readme",
   "bugs": {
     "url": "https://github.com/levi-bassey/lexical-svelte/issues"
